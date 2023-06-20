@@ -28,7 +28,7 @@ public class OutComingMessageSender implements MessageSender<Object> {
         CompletableFuture<SendResult<String, String>> completableFuture = kafkaTemplate.send(outComingMessageTopic, messageString);
         completableFuture.whenComplete((msg, exp) -> {
             if (exp == null) {
-                log.info("Sent message [ %s ] to topic [ %s ]".formatted(message, outComingMessageTopic));
+                log.debug("Sent message [ %s ] to topic [ %s ]".formatted(message, outComingMessageTopic));
             } else {
                 log.error(exp.getMessage());
             }
